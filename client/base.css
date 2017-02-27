@@ -1,0 +1,264 @@
+body {
+  background: url('./img/background_dark.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.btn {
+  background: transparent !important;
+  border-radius: 0 !important;
+  border-width: 1px solid !important;
+}
+
+#wrapper {
+  width: 100vw;
+  position: absolute;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    z-index: 1;
+    position: absolute;
+    width: 0;
+    height: 100vh;
+    overflow-y: hidden;
+    background: #2C3E50;
+    /*border: 2px solid red;*/
+    opacity: 0.7;
+    transition: .5s ease-out;
+
+}
+
+.drummer-list-name {
+  position: relative;
+  top: 25px;
+  text-align: left;
+}
+
+.delete-drummer-btn {
+  position: relative;
+  left: 180px;
+  top: -15px;
+}
+
+.delete-drummer-btn:hover {
+
+  color: black;
+}
+
+/* Always take up entire screen */
+#page-content-wrapper {
+    width: 100vw;
+    position: absolute;
+    padding: 15px;
+    /*border: 5px solid blue;*/
+    transition: .5s ease-out;
+
+    /*background-image: url("./img/background_dark.jpg");
+    background-repeat: no-repeat;*/
+
+
+
+    /*background:
+    radial-gradient(circle at 0% 0,
+         rgba(255,0,0,.2), rgba(255,0,0,0) 70.71%),
+    radial-gradient(circle at 100% 0,
+         rgba(0,0,255,.2), rgba(0,0,255,0) 70.71%),
+    radial-gradient(circle at 100% 100%,
+         rgba(0,255,0,.2), rgba(0,255,0,0) 70.71%),
+	 radial-gradient(circle at 0 100%,
+         rgba(200,200,0,.2), rgba(200,200,0,0) 70.71%);*/
+
+}
+
+.search-form {
+  visibility: hidden;
+  /*z-index: -1;*/
+  /*background-color: rgba(255, 135, 135, 0.7);
+  border-width: 0;*/
+
+
+  padding: 10px 20px;
+  border-color: transparent;
+
+
+  font-size: 15px;
+  background: transparent;
+  /*transition: opacity 1000ms, visibility 1000ms;*/
+
+  position: relative;
+  top: 30px;
+
+  transition: transform 1000ms ease-in-out;
+  visibility: hidden;
+
+}
+
+.search-form: focus {
+  outline: none;
+
+}
+
+.search-styles {
+    border-bottom: 1px solid darkgrey;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+      background: transparent;
+      color: white;
+      border-radius: 0;
+
+}
+
+.add-edit-drummer-btn {
+  visibility: hidden;
+  transition: transform 1000ms ease-in-out;
+
+  position: relative;
+  top: 30px;
+
+}
+.pop-up-modal-header {
+  background-color: #36538C;
+  /*border-left: 2px solid rgba(255, 135, 128, 1);*/
+  border-radius: 0;
+  color: white;
+}
+
+/*.pop-up-modal-body .modal-footer {
+  background: transparent;
+  background-color: #BCE1F4;
+}*/
+
+.pop-up-modal-body .input {
+  background: transparent;
+}
+
+.form-control {
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  box-shadow: none;
+}
+
+.panel {
+  visibility: hidden;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 2px solid rgba(255, 135, 135, 0.7);
+
+}
+
+.head-panel {
+  background: none !important;
+  color: white !important;
+  border-bottom: none;
+  visibility: hidden;
+  position: relative;
+  top: -30px;
+}
+
+.panel-body {
+  background: none;
+  color: white !important;
+  visibility: hidden;
+  padding: 0;
+
+}
+
+.style-panel {
+  z-index: 1000;
+  position: relative;
+  border-radius: 0;
+  background: none;
+
+}
+
+.list-group-item {
+  background: none;
+  color: white !important;
+  border-bottom: none;
+  border-top: none;
+  visibility: hidden;
+  margin-bottom: 0;
+  padding: 0;
+  padding-left: 3px;
+
+}
+
+.drummer-content .sub-category {
+  font-size: 1.3rem;
+}
+
+.sub-category {
+  color: rgba(255, 135, 135, 0.7);
+  padding-left: 3px;
+}
+
+.drummer-bio {
+  padding-left: 50px;
+  display: block;
+  position: relative;
+  top: -19px;
+}
+
+.YT-section {
+  padding-top: 100px;
+}
+
+#YT-heading {
+  color: white;
+}
+
+.unhide-list {
+  visibility: visible;
+}
+
+
+/* Change with of sidebar from 0 to 250px */
+#wrapper.menuDisplayed #sidebar-wrapper {
+    width: 250px;
+}
+
+.menuDisplayed .search-form {
+  visibility: visible;
+
+  transform: translate(0px, -30px);
+
+}
+
+.menuDisplayed .add-edit-drummer-btn {
+  transform: translate(0px, -40px);
+}
+
+/* Since we added left padding, we need to shrink the width by 250px */
+#wrapper.menuDisplayed #page-content-wrapper {
+    padding-left: 250px;
+}
+
+
+/* Sidebar styling - the entire ul list */
+.sidebar-nav {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: white`;
+}
+
+.sidebar-nav li a:hover {
+    background: #FF8787;
+}

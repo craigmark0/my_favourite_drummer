@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+<head>
+    <title>My Favourite Drummer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./libs/animate.css" type="text/css">
+    <link rel="stylesheet" href="base.css" type="text/css">
+    <link rel="stylesheet" href="main.css" type="text/css">
+</head>
+<body>
+  <div class="ang-wrapper" ng-controller = "ApiController" >
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="#">
+                  <button type="button" class="btn btn-large btn-primary btn-default" ng-click = "retrieveAll()">Display all</button>
+                </a></li>
+
+                  <div class="drummer-card" ng-repeat="drummer in fullList | filter: search"
+          										  ng-style="{
+          											  'box-shadow': selectedDrummer == drummer ? '10px 10px 12px black': '',
+          											  'background-color': selectedDrummer == drummer ? '#FF8787' : '',
+          											  'color': selectedDrummer == drummer ? 'white' : ''
+          										  }"
+          										  ng-click="selectDrummer(drummer)">
+                      <li><a href="#">
+            					<h4 class="text-center drummer-list-name">{{drummer.drummerName}}</h4>
+            					<button type="button" class="btn btn-large btn-primary btn-default text-center delete-drummer-btn" ng-click = "deleteDrummer(drummer)">Delete</button>
+          				</div>
+                </a></li>
+                <!--end drummer cards-->
+
+
+            </ul><!--end sidebar nav-->
+        </div><!--end sidebar wrapper-->
+
+
+
+
+
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="#" class="btn btn-success show-drummers-btn" id="menu-toggle">Show drummers</a>
+                        <a href="#new-drummer-modal" class="btn btn-warning add-drummer-btn add-edit-drummer-btn" role="button" data-toggle="modal"<span class="glyphicon glyphicon-hand-up"></span>Add a new drummer</a>
+                        <a href="#edit-drummer-modal" class="btn btn-warning add-edit-drummer-btn" role="button" data-toggle="modal"<span class="glyphicon glyphicon-hand-up"></span>Edit {{selectedDrummer.drummerName}}</a>
+
+                        <!--search form-->
+                        <form class="form-inline well well-sm search-form">
+              						<span class="glyphicon glyphicon-search" style="color:white"></span>
+
+              						<div class="form-group">
+              							<input type="text" class="form-control search-styles" id="name" ng-model = "search.drummerName" placeholder="search name..." />
+              						</div>
+
+              						<div class="form-group">
+              							<input type="text" class="form-control search-styles" id="endorsment" ng-model = "search.drumEndorsment" placeholder="search by endorsment..." />
+              						</div>
+              					</form>
+                        <!--end search form-->
+
+                        <!--start new drummer modal-->
+                        <div class="modal fade" id="new-drummer-modal">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header pop-up-modal-header">
+                                <button class="close" data-dismiss="modal">&times;</button>
+                                <h4>New Drummer</h4>
+                              </div><!--end modal header-->
+                              <div class="modal-body pop-up-modal-body">
+                                <form id="addDrummer">
+                                  <div class="form-horizontal">
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="inputName">Name</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.drummerName">
+                                      </div>
+                                    </div>
+                                    <!-- end input name-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="endorsment">Endorsment</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.drumEndorsment">
+                                      </div>
+                                    </div>
+                                    <!--end drum endorsment-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="yearsOfPlaying">Years Of Playing</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.yearsOfPlaying">
+                                      </div>
+                                    </div>
+                                    <!--end years of playing-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="born">Born</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.born">
+                                      </div>
+                                    </div>
+                                    <!--end born-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="age">Age</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.age">
+                                      </div>
+                                    </div>
+                                    <!--end age-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="bio">Bio</label>
+                                      <div class="col-lg-10">
+                                        <textarea type="text" class="form-control" ng-model = "addDrummerModel.bio"></textarea>
+                                      </div>
+                                    </div>
+                                    <!--end bio-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="ethnicity">Enthnicity</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.ethnicity">
+                                      </div>
+                                    </div>
+                                    <!--end ethnicity-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="albums">Albums</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.albums">
+                                      </div>
+                                    </div>
+                                    <!--end albums-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="songs">Songs</label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.songs">
+                                      </div>
+                                    </div>
+                                    <!--end songs-->
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label" for="currentBand">Current Band</label></label>
+                                      <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model = "addDrummerModel.currentBand">
+                                      </div>
+                                    </div>
+                                    <!--end current band-->
+                                  </div>
+                                  <button type="submit" class="btn btn-default" ng-click = "submitAddDrummerForm()">Submit</button>
+                                </form>
+
+
+
+                              </div><!--end modal body-->
+                              <div class="modal-footer">
+                                <hr />
+                                <!-- <button class="btn btn-default" data-dismiss="modal" type="button">close</button> -->
+                              </div><!--end modal footer-->
+                            </div><!--end modal content-->
+                          </div><!--end modal dialog-->
+                        </div><!--end new drummer modal-->
+
+                        <!--start edit drummer modal-->
+                        <div id="edit-drummer-wrapper">
+                          <div class="modal fade" id="edit-drummer-modal">
+                            <div class="modal-dialog pop-up-modal">
+                              <div class="modal-content">
+                                <div class="modal-header pop-up-modal-header">
+                                  <button class="close" data-dismiss="modal">&times;</button>
+                                  <h4>Edit {{ selectedDrummer.drummerName }} profile</h4>
+                                </div><!--end modal header-->
+                                <div class="modal-body">
+                                  <form id="editDrummer">
+                                    <div class="form-horizontal">
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label" for="endorsment">endorsment</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" class="form-control" ng-model="editDrummerModel.drumEndorsment">
+                                        </div>
+                                      </div>
+                                      <!-- end edit endorsment-->
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label" for="years">Years Of Playing</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" class="form-control" ng-model = "editDrummerModel.yearsOfPlaying">
+                                        </div>
+                                      </div>
+                                      <!--end edit years of playing-->
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label" for="age">Age</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" class="form-control" ng-model = "editDrummerModel.age">
+                                        </div>
+                                      </div>
+                                      <!--end edit age-->
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label" for="albums">Albums</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" class="form-control" ng-model = "editDrummerModel.albums">
+                                        </div>
+                                      </div>
+                                      <!--end edit albums-->
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label" for="song">Songs</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" class="form-control" ng-model = "editDrummerModel.songs">
+                                        </div>
+                                      </div>
+                                      <!--end edit songs-->
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label" for="currentBands">Current Band</label></label>
+                                        <div class="col-lg-10">
+                                          <input type="text" class="form-control" ng-model = "editDrummerModel.currentBand">
+                                        </div>
+                                      </div>
+                                      <!--end edit current band-->
+                                    </div>
+                                    <button type="submit" class="btn btn-default" ng-click = "submitEditDrummerForm()">Submit</button>
+                                  </form>
+
+
+
+                                </div><!--end modal body-->
+                                <div class="modal-footer">
+                                  <hr />
+                                  <button class="btn btn-default" data-dismiss="modal" type="button">close</button>
+
+                                </div><!--end modal footer-->
+                              </div><!--end modal content-->
+                            </div><!--end modal dialog-->
+                          </div><!--end new drummer modal-->
+
+                        </div><!--end edit drummer wrapper-->
+
+                        <div class="panel panel-default style-panel">
+                          <!-- Default panel contents -->
+                          <div class="panel-heading head-panel ">
+                            <h1 class="selectedDrummer">{{ selectedDrummer == null ? 'Name' : selectedDrummer.drummerName }}</h1>
+                          </div>
+                          <div class="panel-body">
+                            <h4> <span class="sub-category">Bio</span>:  <span class="drummer-bio">{{selectedDrummer.bio}}</span></h4>
+                          </div>
+
+                          <!-- List group -->
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Endorsment</span>: <span class="drummer-content">{{ selectedDrummer.drumEndorsment }}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Years of Professional playing</span>: <span class="drummer-content"> {{selectedDrummer.yearsOfPlaying}}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Born</span>:  <span class="drummer-content">{{selectedDrummer.born}}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Age</span>:  <span class="drummer-content">{{selectedDrummer.age}}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Ethnicity</span>:  <span class="drummer-content">{{selectedDrummer.ethnicity}}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Albums</span>:  <span class="drummer-content">{{selectedDrummer.albums}}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Songs</span>:  <span class="drummer-content">{{selectedDrummer.songs}}</span></h4>
+                            </li>
+                            <li class="list-group-item">
+                              <h4> <span class="sub-category">Current Band</span>:  <span class="drummer-content">{{selectedDrummer.currentBand}}</span></h4>
+                            </li>
+                          </ul>
+                        </div><!--end-panel-->
+                    </div><!--end col-6-->
+										<div class="col-lg-6 YT-section" ng-model="selectedDrummer.drummerName">
+											<h4 id="YT-heading">{{selectedDrummer.drummerName}} top search</h4>
+                      <iframe id="ytplayer" type="text/html" width="500" height="320" ng-src="{{updateYTSearch()}}" frameborder="0"></iframe>
+										</div><!--end col 6-->
+                </div><!--end row-->
+            </div><!--end container fluid-->
+        </div><!--end page-content-wrapper-->
+
+    </div><!--end wrapper-->
+
+  </div><!--end apicontroller-->
+    <script src="./libs/angular/angular.min.js" ></script >
+    <script src="./node_modules/angular-route/angular-route.js"></script>
+    <script src="main.js" ></script >
+
+
+    <!-- Menu toggle script -->
+    <script>
+        $("#menu-toggle").click( function (e){
+            e.preventDefault();
+            $("#wrapper").toggleClass("menuDisplayed");
+            $(".list-group-item").toggleClass("unhide-list animated fadeIn");
+            $(".head-panel").toggleClass("unhide-list animated fadeIn");
+            $(".panel-body").toggleClass("unhide-list animated fadeIn");
+            $(".search-form").toggleClass("unhide-list animated fadeIn");
+            $(".panel").toggleClass("unhide-list animated fadeIn");
+            $(".add-edit-drummer-btn").toggleClass("unhide-list animated fadeIn");
+        });
+
+    </script>
+
+
+
+</body>
+</html>

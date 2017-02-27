@@ -1,0 +1,58 @@
+.card-container {
+    margin-top: 12rem;
+
+}
+
+.dropdown {
+    margin-bottom: 5rem;
+}
+
+.drummer-card {
+    background-color:#CEE2FF;
+    /*color: white;*/
+    border-left-style: solid;
+    border-left-color: black;
+    border-left-width: 5px;
+
+    margin-bottom: 1.2em;
+    margin-left: 1.2em;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 4px;
+    max-width: 25rem !important;
+
+
+    box-shadow: 2px 2px 2px #727272;
+}
+
+.sub-category {
+    color: black;
+}
+
+.drummer-content {
+    color: #738487;
+    font-size: 1.7rem;
+}
+
+.drummer-bio {
+    color: #738487;
+    font-size: 1.4rem;
+}
+
+.info-panel {
+    margin-top: 10rem;
+    position: fixed;
+    border-bottom-style: solid;
+    border-bottom-color: #F94F31;
+    border-bottom-width: 5px;
+    max-width: 25rem;
+}
+
+.panel-heading {
+    background-color:#FF8787 !important;
+
+}
+
+.panel-title {
+    color: white;
+}
